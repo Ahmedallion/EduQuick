@@ -1,6 +1,7 @@
 import { createSidebar } from "./ui/sidebar.js";
 import { createBottomBar } from "./ui/bottombar.js";
 import { adjustLayout } from "./ui/layout.js";
+import { startEduQuickWatcher } from "./watcher.js";
 
 export function initEduQuick() {
     const target = "https://my.educake.co.uk/my-educake/";
@@ -18,6 +19,7 @@ export function initEduQuick() {
     createSidebar();
     createBottomBar();
     adjustLayout();
+    startEduQuickWatcher();
 }
 
 export function removeEduQuick() {

@@ -21,17 +21,19 @@ export function createBottomBar() {
     const left = document.createElement("div");
     left.className = "flex-1 flex items-center justify-start";
 
+    const logoLink = document.createElement("a");
+    logoLink.href = "https://github.com/Ahmedallion/EduQuick";
+    logoLink.target = "_blank";
+    logoLink.rel = "noopener noreferrer";
+    logoLink.className = "flex items-center h-full";
+
     const logoImg = document.createElement("img");
     logoImg.src = logoUrl;
     logoImg.alt = "EduQuick";
     logoImg.style.height = "80%";
-    logoImg.style.width = "auto";
-    logoImg.style.cursor = "pointer";
-    logoImg.onclick = () => {
-        window.open("https://github.com/Ahmedallion/EduQuick", "_blank");
-    };
 
-    left.appendChild(logoImg);
+    logoLink.appendChild(logoImg);
+    left.appendChild(logoLink);
 
     const middle = document.createElement("div");
     middle.className = "flex-1 flex items-center justify-center";
@@ -40,7 +42,7 @@ export function createBottomBar() {
     const right = document.createElement("div");
     right.className = "flex-1 flex items-center justify-end";
     right.innerHTML =
-        '&copy;&nbsp;2025&nbsp;<a href="https://github.com/Ahmedallion" class="font-bold no-underline hover:underline" target="_blank">Ahmedallion</a>.&nbsp;Not affiliated with Educake Ltd.';
+        '&copy;&nbsp;2025&nbsp;<a href="https://github.com/Ahmedallion" class="hover:no-underline" target="_blank">Ahmedallion</a>.&nbsp;Not affiliated with Educake Ltd.';
 
     bottombar.appendChild(left);
     bottombar.appendChild(middle);

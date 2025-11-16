@@ -1,6 +1,7 @@
 {
     "name": "eduquick",
     "description": "EduQuick bookmarklet project",
+    "version": "Beta",
     "main": "src/index.js",
     "scripts": {
         "dev": "concurrently \"vite build --watch\" \"serve dist -p 3000\"",
