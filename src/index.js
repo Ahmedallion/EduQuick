@@ -1,3 +1,3 @@
-import { initEduQuick } from "./startup.js";
+import initEduQuick from "./startup.js";
 
 initEduQuick();

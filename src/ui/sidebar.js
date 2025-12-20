@@ -4,14 +4,14 @@ export function createSidebar() {
     const sidebar = document.createElement("div");
     sidebar.id = "eduquick-sidebar";
     sidebar.className =
-        "bg-purple border-purple-30 text-white flex flex-col p-4";
+        "bg-purple border-purple-30 text-white flex flex-col p-4 pb-0";
 
     Object.assign(sidebar.style, {
         position: "fixed",
         top: "0",
         right: "0",
         width: "25%",
-        height: "100%",
+        height: "92%",
         zIndex: "9999",
         borderLeftWidth: "3px",
     });
