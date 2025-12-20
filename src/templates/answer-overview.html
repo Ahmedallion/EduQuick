@@ -1,0 +1,38 @@
+<div class="bg-page-bg text-black rounded-sm p-3 mb-2 w-full text-sm">
+    <div class="flex items-start mb-2">
+        <i
+            class="icon-tick bg-green text-white rounded-sm float-left mr-2 text-md p-1 hidden"
+            data-role="tick"
+        ></i>
+        <i
+            class="icon-cross bg-red text-white rounded-sm float-left mr-2 text-md p-1 hidden"
+            data-role="cross"
+        ></i>
+        <i
+            class="icon-cross bg-grey-40 text-grey-40 rounded-sm float-left mr-2 text-md p-1 hidden"
+            data-role="none"
+        ></i>
+        <div><strong>Q{{NUMBER}}:</strong> {{QUESTION}}</div>
+    </div>
+
+    <div>
+        <img src="{{IMAGE_URL}}" class="w-auto mt-2" />
+    </div>
+
+    <div class="bg-white rounded-sm p-2 w-full text-sm">
+        <div>
+            <span class="font-bold">Your answer:</span>
+            <div class="pre-line mt-1">"{{USER_ANSWER}}"</div>
+        </div>
+        <div>
+            <span class="font-bold">Accepted answer:</span>
+            <div class="pre-line mt-1">"{{ANSWER}}"</div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <button id="auto-answer-btn" class="btn orange black:block-1">
+        Auto Answer
+    </button>
+</div>
