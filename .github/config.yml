@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+    - name: Support
+      url: https://github.com/Ahmedallion/EduQuick/blob/main/SUPPORT.md
+      about: Get help or contact the maintainer
