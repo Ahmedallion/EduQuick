@@ -16,16 +16,16 @@ export default async function handleQuizPage() {
 
     if (quizPage) {
         submitBtn = [...document.querySelectorAll("button")].find(
-            (b) => b.innerText.trim() === "Submit"
+            (button) => button.textContent.trim() === "Submit"
         );
         submitBtn && (submitBtn.disabled = true);
         activeQuiz = true;
     } else {
         startBtn = await waitForElement(() =>
             [...document.querySelectorAll("button")].find(
-                (b) =>
-                    b.innerText.trim() === "Begin quiz" ||
-                    b.innerText.trim() === "Continue quiz"
+                (button) =>
+                    button.textContent.trim() === "Begin quiz" ||
+                    button.textContent.trim() === "Continue quiz"
             )
         );
         startBtn.disabled = true;
@@ -35,7 +35,13 @@ export default async function handleQuizPage() {
     const stored = JSON.parse(sessionStorage.getItem("EduQuickQuizData"));
 
     if (quizId !== stored?.quizId) {
-        return handleCollectState({ quizId, signal });
+        if (quizPage) {
+            history.replaceState({}, "", location.pathname + "/reload");
+            window.dispatchEvent(new Event("popstate"));
+            return;
+        } else {
+            return handleCollectState({ quizId, signal });
+        }
     }
 
     if (!activeQuiz) {

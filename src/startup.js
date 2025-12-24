@@ -2,62 +2,103 @@ import { createSidebar } from "./ui/sidebar.js";
 import { createBottomBar } from "./ui/bottombar.js";
 import { applyLayout } from "./ui/layout.js";
 import { startEduQuickWatcher } from "./core/watcher.js";
+import createModal from "./ui/modal.js";
+import { bmVersion } from "../package.json";
 
 export default function initEduQuick() {
+    const script = document.getElementById("eduquick");
+
     const targetSite = "https://my.educake.co.uk/";
 
     if (!location.href.startsWith(targetSite + "my-educake/")) {
         if (location.href.startsWith(targetSite)) {
-            const modal = document.createElement("div");
-
-            modal.id = "eduquick-modal";
-            modal.innerHTML = `
-                <div class="not-print:bg-black/50 not-print:z-100 flex justify-center items-center not-print:h-full not-print:w-full not-print:top-0 not-print:left-0 not-print:fixed">
-                <div class="inset-0 z-50 flex items-center justify-center">
-                    <div id="eduquick-modal-container" class="modal-container flex flex-col min-w-250px max-w-screen max-h-[90vh] md:max-h-screen shadow-xl/20 hc:border rounded" style="width: 400px; translate: 0px;">
-                    <div id="eduquick-modal-header" class="modal-header w-full rounded-t block-3 border-3 border-page-bg purple">
-                        <div class="text-bold p-2 w-full h-full flex my-auto justify-between">
-                        <div id="eduquick-modal-title" class="pl-1 font-bold text-button-fg prose ellipsis">
-                            <p id="eduquick-modal-title-text" class="my-auto">Login Required</p>
-                        </div>
-                        <button id="eduquick-close-btn" class="btn bg-block-bg-3 hc:border-0 cursor-pointer hoverable p-1">
-                            <em class="icon-cross text-base"></em>
-                        </button>
-                        </div>
-                    </div>
-                    <div id="eduquick-modal-body" class="modal-body flex-auto p-4 bg-page-bg not-print:overflow-auto h-full w-full">
-                        <p class="prose">Please login first to use EduQuick.</p>
-                    </div>
-                    <div id="eduquick-modal-footer" class="modal-footer w-full p-4 bg-page-bg rounded-b">
-                        <div class="flex justify-end flex-wrap">
-                        <button id="eduquick-ok-btn" class="btn btn-small purple ml-2">Ok</button>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            `;
-
-            document.body.appendChild(modal);
-
-            document
-                .getElementById("eduquick-close-btn")
-                .addEventListener("click", () => {
-                    document.body.removeChild(modal);
-                });
-
-            document
-                .getElementById("eduquick-ok-btn")
-                .addEventListener("click", () => {
-                    document.body.removeChild(modal);
-                });
-
-            return;
+            createModal({
+                title: "Login Required",
+                content: `<p class="prose">Please login first to use EduQuick.</p>`,
+                buttons: [
+                    {
+                        text: "Ok",
+                        class: "purple",
+                        onClick: (close) => close(),
+                    },
+                ],
+            });
         } else {
             alert("Please navigate to my.educake.co.uk to use EduQuick.");
-            return;
         }
+
+        script.remove();
+        return;
     }
+
+    if (script.getAttribute("eduquick-bm-version") !== bmVersion) {
+        createModal({
+            title: "Update Required",
+            content: `
+                <p class="prose">
+                    The bookmarklet installed on your browser is outdated.
+                </p>
+                <p class="prose">
+                    Please delete and uninstall EduQuick, then redownload the latest bookmarklet to continue.
+                </p>
+            `,
+            buttons: [
+                {
+                    text: "Reinstall",
+                    class: "purple",
+                    href: "https://github.com/Ahmedallion/EduQuick/troubleshooting/update-required.md",
+                },
+            ],
+            closeOnBackdrop: false,
+            closeOnEscape: false,
+            showCloseButton: false,
+        });
+
+        script.remove();
+        return;
+    }
+
+    window.addEventListener(
+        "error",
+        (e) => {
+            if (e.target && e.target.id === "eduquick") {
+                createModal({
+                    title: "EduQuick Runtime Error",
+                    content: `<p class="prose">${
+                        e.message || "Unknown error occurred"
+                    }</p>`,
+                    buttons: [
+                        {
+                            text: "Close",
+                            class: "purple",
+                            onClick: (close) => close(),
+                        },
+                    ],
+                });
+            }
+        },
+        true
+    );
+
+    // I have no idea if this one works. If you're reading this then please help!!!!
+    window.addEventListener("unhandledrejection", (e) => {
+        if (e.reason && e.reason.stack && e.reason.stack.includes("eduquick")) {
+            createModal({
+                title: "EduQuick Async Error",
+                content: `<p class="prose">${
+                    e.reason.message || "An async error occurred"
+                }</p>`,
+                buttons: [
+                    {
+                        text: "Close",
+                        class: "purple",
+                        onClick: (close) => close(),
+                    },
+                ],
+            });
+            e.preventDefault();
+        }
+    });
 
     applyLayout();
     createSidebar();

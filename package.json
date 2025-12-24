@@ -1,12 +1,12 @@
 {
     "name": "eduquick",
-    "description": "EduQuick bookmarklet project",
+    "description": "Collect answers and auto-complete Educake quizzes in seconds.",
     "version": "Beta",
+    "bmVersion": "1",
     "main": "src/index.js",
     "scripts": {
-        "dev": "concurrently \"vite build --watch\" \"serve dist -p 3000\"",
-        "build": "vite build",
-        "preview": "vite preview"
+        "dev": "concurrently \"vite build --watch\" \"serve dist -p 5173\"",
+        "build": "vite build"
     },
     "devDependencies": {
         "concurrently": "^9.2.1",

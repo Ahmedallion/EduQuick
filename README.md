@@ -82,8 +82,6 @@ If you’re here, you probably know why.
 3. Drag & drop or import the HTML file
 4. You’ll now have a bookmark folder called **EduQuick**
 
----
-
 ### Option 2: Manual Bookmarklet
 
 1. Open  
@@ -138,6 +136,8 @@ You can run EduQuick locally if you want to inspect, modify, or develop it.
 
 ### Steps
 
+##### 1. Clone the repository, install dependencies, and start the dev server:
+
 ```bash
 git clone https://github.com/Ahmedallion/EduQuick
 cd EduQuick
@@ -145,10 +145,37 @@ npm install
 npm run dev
 ```
 
-1. Copy the bookmarklet from
-   [`install/eduquick-dev.js`](install/eduquick-dev.js)
-2. Create a bookmark using that script
-3. Run it on Educake as usual
+> By default, the dev server uses **port 5173**.
+> You **must change it** in [`package.json`](package.json) if you want a different port, and also update the port in the local bookmarklet so it points to the same source.
+
+##### 2. Install the Bookmarklet
+
+You have two options to add the bookmarklet:
+
+###### Option 1: Import HTML (Recommended)
+
+1. Download [`install/eduquick-dev.html`](install/eduquick-dev.html).
+2. Open your bookmarks manager:
+
+    - Chrome / Edge: `chrome://bookmarks`
+
+3. Drag & drop the HTML file, or use the **Import** option.
+4. A bookmark folder called **EduQuick Dev** will be added.
+
+###### Option 2: Manual Bookmarklet
+
+1. Open [`install/eduquick-dev.js`](install/eduquick-dev.js).
+2. Copy **all** the contents.
+3. Create a new bookmark:
+
+    - **Name:** `EduQuick Dev`
+    - **URL:** Paste the copied JavaScript.
+
+4. Save the bookmark.
+
+##### 3. Usage
+
+Run it on Educake as usual.
 
 ---
 
@@ -156,7 +183,7 @@ npm run dev
 
 If you need an older version:
 
--   Go to **Releases**
+-   Go to [Releases](http://github.com/Ahmedallion/EduQuick/releases)
 -   Download the version you want
 -   Use its corresponding install file
 
@@ -218,8 +245,6 @@ Images will be added soon:
 -   You are responsible for how you use EduQuick
 -   This project is **not affiliated with Educake**
 -   If something breaks, that’s on you - but I’ll try to help 😉
-
----
 
 <!--
 Made with ❤️ and a strong dislike for unnecessarily tedious homework.

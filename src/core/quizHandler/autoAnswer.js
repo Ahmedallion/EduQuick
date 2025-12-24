@@ -1,5 +1,5 @@
 export function isAutoAnswerEnabled() {
-    return new URLSearchParams(location.search).get("autoAnswer") === "true";
+    return window.location.hash === "#auto-answer";
 }
 
 export function runAutoAnswer({
@@ -11,8 +11,6 @@ export function runAutoAnswer({
 }) {
     if (userAnswer !== correctAnswer) {
         if (textInput) {
-            if (textInput.placeholder.includes("number"))
-                correctAnswer = Number(correctAnswer);
             textInput.value = correctAnswer;
             textInput.dispatchEvent(new Event("input", { bubbles: true }));
             return;
@@ -20,9 +18,8 @@ export function runAutoAnswer({
 
         if (mcqLabels) {
             const match = Array.from(mcqLabels).find(
-                (l) =>
-                    l.querySelector(".pre-line").innerText.trim() ===
-                    correctAnswer
+                (choice) =>
+                    choice.getAttribute("aria-label").trim() === correctAnswer
             );
             match.click();
             return;
@@ -35,7 +32,7 @@ export function runAutoAnswer({
     }
 
     const nextBtn = [...document.querySelectorAll("button")].find(
-        (b) => b.innerText.trim() === "Next question"
+        (button) => button.textContent.trim() === "Next question"
     );
     nextBtn?.click();
 }
