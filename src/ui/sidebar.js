@@ -12,7 +12,7 @@ export function createSidebar() {
         right: "0",
         width: "25%",
         height: "92%",
-        zIndex: "9999",
+        zIndex: "99",
         borderLeftWidth: "3px",
     });
 
@@ -22,7 +22,7 @@ export function createSidebar() {
 
     const content = document.createElement("div");
     content.id = "eduquick-sidebar-content";
-    content.className = "flex-1 overflow-auto";
+    content.className = "flex-1";
 
     sidebar.appendChild(title);
     sidebar.appendChild(content);

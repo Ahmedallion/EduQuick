@@ -13,6 +13,13 @@ export default async function handlePageChange() {
     setEduQuickTitle("Please wait");
     setEduQuickContent("<p>Content is loading based on the page...</p>");
 
+    if (url.includes("/reload")) {
+        const newPath = location.pathname.replace(/(\/true)?\/reload$/, "");
+        history.replaceState({}, "", newPath);
+        window.dispatchEvent(new Event("popstate"));
+        return;
+    }
+
     if (url.includes("/quiz/")) {
         return handleQuizPage();
     }

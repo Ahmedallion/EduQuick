@@ -3,7 +3,9 @@ import { setEduQuickTitle, setEduQuickContent } from "../../ui/sidebar.js";
 import { trackTimer } from "../pageCancellation.js";
 
 export default function handlePreStartState({ startBtn, stored }) {
-    const original = startBtn.innerText.trim();
+    window.location.hash = "";
+
+    const original = startBtn.textContent.trim();
     let t = 10;
 
     setEduQuickStatus("Ready to start.");
@@ -13,12 +15,12 @@ export default function handlePreStartState({ startBtn, stored }) {
     startBtn.disabled = true;
 
     const timer = setInterval(() => {
-        startBtn.innerText = `${original} (${t})`;
+        startBtn.textContent = `${original} (${t})`;
         t--;
 
         if (t < 0) {
             clearInterval(timer);
-            startBtn.innerText = original;
+            startBtn.textContent = original;
             startBtn.disabled = false;
         }
     }, 1000);

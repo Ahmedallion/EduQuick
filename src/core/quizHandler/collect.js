@@ -15,6 +15,7 @@ export default async function handleCollectState({ quizId, signal }) {
             ANSWER: "",
         })
     );
+    document.querySelector('[data-role="none"]').classList.remove("hidden");
 
     const authToken = sessionStorage.getItem("token");
     const xsrfToken = decodeURIComponent(
@@ -86,6 +87,7 @@ export default async function handleCollectState({ quizId, signal }) {
                 ANSWER: quiz.answers[id].answer,
             })
         );
+        document.querySelector('[data-role="tick"]').classList.remove("hidden");
     }
 
     sessionStorage.setItem("EduQuickQuizData", JSON.stringify(quiz));
