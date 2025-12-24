@@ -1,16 +1,16 @@
 javascript: (function () {
     var bmVersion = "1";
-    var s = document.getElementById("eduquick");
-    if (!s) {
-        s = document.createElement("script");
-        s.src =
-            "https://raw.githubusercontent.com/Ahmedallion/EduQuick/main/dist/eduquick.min.js";
-        s.id = "eduquick";
-        s.setAttribute("eduquick-visible", "true");
-        s.setAttribute("eduquick-bm-version", bmVersion);
-        document.body.appendChild(s);
+    var script = document.getElementById("eduquick");
+    if (!script) {
+        script = document.createElement("script");
+        script.src =
+            "https://cdn.jsdelivr.net/gh/Ahmedallion/EduQuick@main/dist/eduquick.min.js";
+        script.id = "eduquick";
+        script.setAttribute("eduquick-bm-version", bmVersion);
+        script.setAttribute("eduquick-visible", "true");
+        document.body.appendChild(script);
     } else {
-        var v = s.getAttribute("eduquick-visible") === "true";
-        s.setAttribute("eduquick-visible", v ? "false" : "true");
+        var visibility = script.getAttribute("eduquick-visible") === "true";
+        script.setAttribute("eduquick-visible", visibility ? "false" : "true");
     }
 })();
