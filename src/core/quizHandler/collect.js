@@ -5,7 +5,7 @@ import collectingTemplate from "../../templates/collecting-answers.html?raw";
 import handlePageChange from "../pageHandler.js";
 
 export default async function handleCollectState({ quizId, signal }) {
-    setEduQuickStatus("Fetching questions...");
+    setEduQuickStatus("Fetching quiz...");
     setEduQuickTitle("Collecting Answers");
     setEduQuickContent(
         await loadTemplate(collectingTemplate, {
@@ -13,13 +13,13 @@ export default async function handleCollectState({ quizId, signal }) {
             QUESTION: "Loading question...",
             IMAGE_URL: "",
             ANSWER: "",
-        })
+        }),
     );
     document.querySelector('[data-role="none"]').classList.remove("hidden");
 
     const authToken = sessionStorage.getItem("token");
     const xsrfToken = decodeURIComponent(
-        document.cookie.match(/XSRF-TOKEN=([^;]+)/)?.[1] || ""
+        document.cookie.match(/XSRF-TOKEN=([^;]+)/)?.[1] || "",
     );
 
     const quizResponse = await fetch(
@@ -31,26 +31,50 @@ export default async function handleCollectState({ quizId, signal }) {
                 "X-XSRF-TOKEN": xsrfToken,
             },
             signal,
-        }
+        },
     );
 
     const quizData = await quizResponse.json();
-    const questionMap = quizData.attempt[quizId].questionMap;
-    const questionCount = quizData.attempt[quizId].questionCount;
+    const attempt = quizData.attempt[quizId];
 
-    const quiz = { quizId, answers: {} };
+    const answered = attempt.answerCount;
+    const correct = attempt.correctCount;
 
-    for (const q of Object.values(questionMap)) {
-        quiz.answers[q.id] = {
-            question: q.question,
-            image: q.image || "",
+    const hadMistakesBefore = answered - correct > 0;
+
+    const order = attempt.questions;
+    const questionMap = attempt.questionMap;
+
+    const quiz = {
+        quizId,
+        totalQuestions: attempt.questionCount,
+        collectedCount: 0,
+        hadMistakesBefore,
+        questions: {},
+    };
+
+    let questionNumber = answered + 1;
+
+    for (let i = answered; i < order.length; i++) {
+        const questionId = order[i];
+        const questionData = questionMap[questionId];
+
+        quiz.questions[questionNumber] = {
+            id: questionData.id,
+            question: questionData.question,
+            image: questionData.image || "",
+            type: questionData.type,
             answer: null,
         };
+
+        questionNumber++;
     }
 
+    quiz.collectedCount = Object.keys(quiz.questions).length;
+
     const fetchAnswer = async (id, retries = 3) => {
-        for (let i = 1; i <= retries; i++) {
-            const r = await fetch(
+        for (let attemptNumber = 0; attemptNumber < retries; attemptNumber++) {
+            const response = await fetch(
                 `https://my.educake.co.uk/api/course/question/${id}/mark`,
                 {
                     method: "POST",
@@ -62,34 +86,43 @@ export default async function handleCollectState({ quizId, signal }) {
                     },
                     body: JSON.stringify({ givenAnswer: "1" }),
                     signal,
-                }
+                },
             );
 
-            if (r.ok) {
-                const d = await r.json();
-                return d.answer.correctAnswers?.[0] ?? null;
+            if (response.ok) {
+                const responseData = await response.json();
+                return responseData.answer.correctAnswers?.[0] ?? null;
             }
         }
         return null;
     };
 
-    let i = 0;
-    for (const id in quiz.answers) {
-        i++;
-        setEduQuickStatus(`Fetching answer ${i} of ${questionCount}...`);
-        quiz.answers[id].answer = await fetchAnswer(id);
+    for (const number in quiz.questions) {
+        const questionData = quiz.questions[number];
 
+        setEduQuickStatus(`Fetching question ${number}...`);
+
+        questionData.answer = await fetchAnswer(questionData.id);
         setEduQuickContent(
             await loadTemplate(collectingTemplate, {
-                NUMBER: i,
-                QUESTION: quiz.answers[id].question,
-                IMAGE_URL: quiz.answers[id].image,
-                ANSWER: quiz.answers[id].answer,
-            })
+                NUMBER: number,
+                QUESTION: questionData.question,
+                IMAGE_URL: questionData.image,
+                ANSWER: questionData.answer || "",
+            }),
         );
-        document.querySelector('[data-role="tick"]').classList.remove("hidden");
+        if (questionData.answer) {
+            document
+                .querySelector('[data-role="tick"]')
+                .classList.remove("hidden");
+        } else {
+            setEduQuickStatus(`Failed to fetch question ${number}.`);
+            document
+                .querySelector('[data-role="cross"]')
+                .classList.remove("hidden");
+        }
     }
 
-    sessionStorage.setItem("EduQuickQuizData", JSON.stringify(quiz));
+    sessionStorage.setItem("eduquickQuiz", JSON.stringify(quiz));
     handlePageChange();
 }
