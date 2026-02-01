@@ -1,7 +1,7 @@
 {
     "name": "eduquick",
     "description": "Collect answers and auto-complete Educake quizzes in seconds.",
-    "version": "Beta",
+    "version": "1.0.0",
     "bmVersion": "1",
     "main": "src/index.js",
     "scripts": {
