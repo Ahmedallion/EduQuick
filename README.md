@@ -1,59 +1,97 @@
-# EduQuick
+<h1 style="display:flex;align-items:center;">
+  <img src="docs/images/eduquick-logo.png" alt="EduQuick Logo">&nbsp;EduQuick
+</h1>
 
-EduQuick is a bookmarklet-based script for **[Educake](https://www.educake.co.uk)** that helps you get quizzes done faster by collecting answers _before_ you even start - with an optional auto-answer mode to secure 100% results with minimal effort.
+**Collect answers and auto-complete Educake quizzes in seconds.**
 
-> Built to save time. Designed to remove tedium. Use wisely.
+<p>
+  <a href="https://ahmedallion.dev/" target="_blank">🌐 Creator's Website</a>
+</p>
 
----
-
-## ⚡ What is EduQuick?
-
-EduQuick is a **JavaScript bookmarklet** that injects itself into Educake quizzes.  
-It runs entirely client-side and focuses on removing the most annoying parts of Educake homework.
-
-Educake is an online homework and revision platform for UK students (KS2, KS3, GCSE) that provides specification-matched quizzes.
-
-**EduQuick is NOT affiliated with Educake in any way.**
+EduQuick is a simple tool for **[Educake](https://www.educake.co.uk)** that helps you get quizzes done faster.  
+It collects answers before you start, and can optionally auto-complete quizzes so you save time on repetitive work.
 
 ---
 
 ## ✨ Features
 
--   📋 **Answer Overview**
+- 📋 **Answer Overview**
+    - Collects all quiz answers before you begin
+    - Displays them in a clean, easy-to-read panel
 
-    -   Collects all quiz answers before you begin
-    -   Displays them in a clean, easy-to-read panel
+- 🤖 **Auto Answer (Optional)**
+    - Automatically selects or inputs correct answers
+    - Waits for submit buttons where required
+    - Ideal for deadlines, repetitive work, or “just get it done” homework
 
--   🤖 **Auto Answer (Optional)**
+- 🔄 **Auto Updates**
+    - Always pulls the latest script from this GitHub repository
+    - Warns you if your installed bookmarklet itself needs updating
 
-    -   Automatically selects or inputs correct answers
-    -   Waits for submit buttons where required
-    -   Ideal for deadlines, repetitive work, or “just get it done” homework
+- 🧠 **Non-intrusive**
+    - Runs only when you click it
+    - No permanent browser changes
 
--   🔄 **Auto Updates**
+---
 
-    -   Always pulls the latest script from this GitHub repository
-    -   Warns you if your installed bookmarklet itself needs updating
+## 🚀 Installation
 
--   🧠 **Non-intrusive**
-    -   Runs only when you click it
-    -   No permanent browser changes
+### 💻 Desktop (Recommended)
+
+1. Download [`install/eduquick.html`](install/eduquick.html)
+2. Open your bookmarks manager
+3. Make sure your bookmarks bar is visible (or set to always show)
+4. Import the HTML file
+5. You’ll see a new **EduQuick** folder
+
+### 📱 Mobile or Alternative Method (Desktop)
+
+1. Open [`install/eduquick.js`](install/eduquick.js)
+2. Copy all the code
+3. Either:
+    - Create a bookmark called **EduQuick** and paste the code in the URL field, **or**
+    - Paste the code into the browser's address bar while Educake is open
+
+> For a more detailed explanation, check [`docs/installation.md`](docs/installation.md)
+
+---
+
+## ▶️ How to Use
+
+1. Log in to **Educake**
+2. Open a quiz
+3. Click the **EduQuick** bookmark **or paste the code into the active tab**
+4. EduQuick loads instantly
+
+> ⚠️ You **must** already be logged into Educake - otherwise EduQuick will not load.
+
+---
+
+## 🤖 Auto Answer Mode
+
+- Can be enabled from the EduQuick UI
+- Automatically:
+    - Selects multiple-choice answers
+    - Fills text inputs
+    - Waits for and clicks submit buttons
+
+Nothing runs unless you turn it on.
 
 ---
 
 ## ⚠️ Limitations & Known Issues
 
--   **Mobile devices are not supported**  
-    EduQuick is designed for desktop browsers. Mobile support may be added in the future, but there are no guarantees.
+- **Mobile devices are not fully supported**  
+  EduQuick is designed for desktop browsers. Mobile support may be added in the future, but there are no guarantees.
 
--   **UI may look odd on some browsers or screen sizes**  
-    The UI and CSS are currently optimised for my own setup. Support for more browsers and resolutions will improve over time.
+- **UI may look odd on some browsers or screen sizes**  
+  The UI and CSS are currently optimised for my own setup. Support for more browsers and resolutions will improve over time.
 
--   **Educake account customisation settings are not fully supported**  
-    Certain Educake UI or account customisation options may interfere with EduQuick. Better handling is planned.
+- **Educake account customisation settings are not fully supported**  
+  Certain Educake UI or account customisation options may interfere with EduQuick. Better handling is planned.
 
--   **Educake updates can temporarily break things**  
-    Educake UI or backend changes may cause features to stop working until EduQuick is updated.
+- **Educake updates can temporarily break things**  
+  Educake UI or backend changes may cause features to stop working until EduQuick is updated.
 
 If something looks broken and isn’t listed here, feel free to open an issue.
 
@@ -63,153 +101,19 @@ If something looks broken and isn’t listed here, feel free to open an issue.
 
 Let’s be real:
 
--   Students who already understand the content
--   Students who are tired of repetitive Educake homework
--   Students who want their time back
+- Students who already understand the content
+- Students who are tired of repetitive Educake homework
+- Students who want their time back
 
 If you’re here, you probably know why.
 
 ---
 
-## 🚀 Installation (Bookmarklet)
-
-### Option 1: Import HTML (Recommended)
-
-1. Download  
-   [`install/eduquick.html`](install/eduquick.html)
-2. Open your bookmarks manager
-    - Chrome / Edge: `chrome://bookmarks`
-3. Drag & drop or import the HTML file
-4. You’ll now have a bookmark folder called **EduQuick**
-
-### Option 2: Manual Bookmarklet
-
-1. Open  
-   [`install/eduquick.js`](install/eduquick.js)
-2. Copy **all** of its contents
-3. Create a new bookmark:
-    - **Name:** `EduQuick`
-    - **URL:** paste the copied JavaScript
-4. Save
-
----
-
-## ▶️ How to Use
-
-1. Log in to **Educake**
-2. Open a quiz
-3. Click the **EduQuick** bookmark
-4. EduQuick loads instantly
-
-> ⚠️ You **must** already be logged into Educake - otherwise EduQuick will not load.
-
----
-
-## 🤖 Auto Answer Mode
-
--   Can be enabled from the EduQuick UI
--   Automatically:
-    -   Selects multiple-choice answers
-    -   Fills text inputs
-    -   Waits for and clicks submit buttons
-
-Nothing runs unless you turn it on.
-
----
-
 ## 🔄 Updates
 
--   EduQuick **auto-fetches the latest version** from GitHub
--   If your **installed bookmarklet is outdated**, EduQuick will notify you
--   Reinstalling takes less than a minute
-
----
-
-## 🧪 Running Locally (Development)
-
-You can run EduQuick locally if you want to inspect, modify, or develop it.
-
-### Prerequisites
-
--   Node.js
--   npm
-
-### Steps
-
-##### 1. Clone the repository, install dependencies, and start the dev server:
-
-```bash
-git clone https://github.com/Ahmedallion/EduQuick
-cd EduQuick
-npm install
-npm run dev
-```
-
-> By default, the dev server uses **port 5173**.
-> You **must change it** in [`package.json`](package.json) if you want a different port, and also update the port in the local bookmarklet so it points to the same source.
-
-##### 2. Install the Bookmarklet
-
-You have two options to add the bookmarklet:
-
-###### Option 1: Import HTML (Recommended)
-
-1. Download [`install/eduquick-dev.html`](install/eduquick-dev.html).
-2. Open your bookmarks manager:
-
-    - Chrome / Edge: `chrome://bookmarks`
-
-3. Drag & drop the HTML file, or use the **Import** option.
-4. A bookmark folder called **EduQuick Dev** will be added.
-
-###### Option 2: Manual Bookmarklet
-
-1. Open [`install/eduquick-dev.js`](install/eduquick-dev.js).
-2. Copy **all** the contents.
-3. Create a new bookmark:
-
-    - **Name:** `EduQuick Dev`
-    - **URL:** Paste the copied JavaScript.
-
-4. Save the bookmark.
-
-##### 3. Usage
-
-Run it on Educake as usual.
-
----
-
-## 🕒 Older Versions
-
-If you need an older version:
-
--   Go to [Releases](http://github.com/Ahmedallion/EduQuick/releases)
--   Download the version you want
--   Use its corresponding install file
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome.
-
--   See [`CONTRIBUTING.md`](CONTRIBUTING.md) for guidelines  
-    (this file may evolve over time)
-
-### Bugs & Issues
-
-This is my **first major public JavaScript project**, and I’m still learning - so yes, the code _will_ be messy in places.
-
-If you run into a bug or issue, please open a GitHub issue and include as much detail as possible.  
-You’ll be guided by an issue template, but especially helpful details include:
-
--   Browser name and version
--   Page / quiz type
--   What you expected to happen
--   What actually happened
--   Console errors (if any)
-
-It genuinely helps and saves a lot of back-and-forth.
+- EduQuick **auto-fetches the latest version** from GitHub
+- If your **installed bookmarklet is outdated**, EduQuick will notify you
+- Reinstalling takes less than a minute
 
 ---
 
@@ -217,11 +121,11 @@ It genuinely helps and saves a lot of back-and-forth.
 
 Huge thanks to these projects, which I discovered later on and which helped influence parts of EduQuick:
 
--   **[Educake-Helper](https://github.com/Danny0408/Educake-Helper)**
-    For reverse engineering the Educake API
+- **[Educake-Helper](https://github.com/Danny0408/Educake-Helper)**
+  For reverse engineering the Educake API
 
--   **[educake-hacks](https://github.com/smellyelephant/educake-hacks)**
-    For inspiration and help with parts of the auto-answer logic
+- **[educake-hacks](https://github.com/smellyelephant/educake-hacks)**
+  For inspiration and help with parts of the auto-answer logic
 
 ---
 
@@ -229,22 +133,28 @@ Huge thanks to these projects, which I discovered later on and which helped infl
 
 Images will be added soon:
 
--   Answer overview
-    ![Answer Overview](docs/images/answer-overview.png)
+- UI elements
+  ![UI](docs/images/ui.png)
 
--   Auto-answer flow
-    ![Auto Answer](docs/images/auto-answer.png)
+- Collecting overview
+  ![Collecting Overview](docs/images/collecting-overview.png)
 
--   UI elements
-    ![UI](docs/images/ui.png)
+- Auto-answer flow
+  ![Auto Answer](docs/images/auto-answer.png)
 
 ---
 
 ## ⚠️ Disclaimer
 
--   You are responsible for how you use EduQuick
--   This project is **not affiliated with Educake**
--   If something breaks, that’s on you - but I’ll try to help 😉
+- You are responsible for how you use EduQuick
+- This project is **not affiliated with Educake**
+- If something breaks, that’s on you - but I’ll try to help 😉
+
+---
+
+<!-- Keywords for SEO -->
+
+education, answers, school, test, homework, bookmarklet, bookmark farming, quiz hacks, classwork, auto-answer, educake
 
 <!--
 Made with ❤️ and a strong dislike for unnecessarily tedious homework.
