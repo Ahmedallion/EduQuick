@@ -1,0 +1,10 @@
+$brand-color: #593280;
+
+.btn-purple {
+    background-color: $brand-color !important;
+    color: #ffffff !important;
+
+    &:hover {
+        background-color: lighten($brand-color, 5%) !important;
+    }
+}

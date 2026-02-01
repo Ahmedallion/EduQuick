@@ -1,12 +1,11 @@
-<h1 style="display:flex;align-items:center;">
-  <img src="docs/images/eduquick-logo.png" alt="EduQuick Logo">&nbsp;EduQuick
+<h1 style="display:flex;align-items:center;gap:10px;">
+  <img src="docs/assets/images/eduquick-icon.png" alt="EduQuick Icon" style="height:42px;">
+  EduQuick
 </h1>
 
-**Collect answers and auto-complete Educake quizzes in seconds.**
+[![jsDelivr](https://data.jsdelivr.com/v1/package/gh/Ahmedallion/EduQuick/badge?style=rounded)](https://www.jsdelivr.com/package/gh/Ahmedallion/EduQuick) ![Stars](https://img.shields.io/github/stars/Ahmedallion/EduQuick?style=flat&logo=github) ![Last Commit](https://img.shields.io/github/last-commit/Ahmedallion/EduQuick) [![Docs](https://img.shields.io/badge/GitHub%20Pages-Docs-black?logo=github)](https://ahmedallion.github.io/EduQuick) [![Creatpr's Website](https://img.shields.io/badge/Website-ahmedallion.dev-blue?logo=google-chrome&logoColor=white)](https://ahmedallion.dev/)
 
-<p>
-  <a href="https://ahmedallion.dev/" target="_blank">🌐 Creator's Website</a>
-</p>
+**Collect answers and auto-complete Educake quizzes in seconds.**
 
 EduQuick is a simple tool for **[Educake](https://www.educake.co.uk)** that helps you get quizzes done faster.  
 It collects answers before you start, and can optionally auto-complete quizzes so you save time on repetitive work.
@@ -52,7 +51,7 @@ It collects answers before you start, and can optionally auto-complete quizzes s
     - Create a bookmark called **EduQuick** and paste the code in the URL field, **or**
     - Paste the code into the browser's address bar while Educake is open
 
-> For a more detailed explanation, check [`docs/installation.md`](docs/installation.md)
+> For a more detailed explanation, check [`docs/installation`](https://ahmedallion.github.io/EduQuick/installation)
 
 ---
 
@@ -131,16 +130,14 @@ Huge thanks to these projects, which I discovered later on and which helped infl
 
 ## 📸 Demo & Screenshots
 
-Images will be added soon:
-
 - UI elements
-  ![UI](docs/images/ui.png)
+  ![UI](docs/assets/images/ui.png)
 
 - Collecting overview
-  ![Collecting Overview](docs/images/collecting-overview.png)
+  ![Collecting Overview](docs/assets/images/collecting-overview.png)
 
 - Auto-answer flow
-  ![Auto Answer](docs/images/auto-answer.png)
+  ![Auto Answer](docs/assets/images/auto-answer.png)
 
 ---
 
@@ -149,6 +146,10 @@ Images will be added soon:
 - You are responsible for how you use EduQuick
 - This project is **not affiliated with Educake**
 - If something breaks, that’s on you - but I’ll try to help 😉
+
+---
+
+📘 Full documentation available at: https://ahmedallion.github.io/EduQuick
 
 ---
 
