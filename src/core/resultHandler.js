@@ -1,7 +1,9 @@
 import { setEduQuickStatus } from "../ui/bottombar";
 import { setEduQuickTitle, setEduQuickContent } from "../ui/sidebar";
 import loadTemplate from "../templates/load.js";
+import quizResultTemplate from "../templates/quiz-result.html?raw";
 import { createNewController } from "./pageCancellation.js";
+import handlePageChange from "./pageHandler.js";
 
 export default async function handleQuizResult() {
     const signal = createNewController();
@@ -23,29 +25,49 @@ export default async function handleQuizResult() {
                 "X-XSRF-TOKEN": xsrfToken,
             },
             signal,
-        }
+        },
     );
 
     const quizData = await quizResponse.json();
 
+    if (quizData.attempt[quizId].status !== "completed") {
+        const newPath = location.pathname.replace("/quiz-result", "/quiz");
+        history.replaceState({}, "", newPath);
+        window.dispatchEvent(new Event("popstate"));
+        return;
+    }
+
     const quizScore = Math.round(
-        (quizData.attempt[quizId]?.correctCount /
+        (quizData.attempt[quizId].correctCount /
             quizData.attempt[quizId].questionCount) *
-            100
+            100,
     );
 
-    setEduQuickStatus(`Quiz completed with ${quizScore}%.`);
+    const wrongCount =
+        quizData.attempt[quizId].questionCount -
+        quizData.attempt[quizId].correctCount;
 
-    if (quizScore === 100) {
-        setEduQuickTitle("Congratulations!");
-        setEduQuickContent(
-            "<p>You have successfully completed the quiz with a perfect score.</p>"
-        );
-    } else {
-        setEduQuickTitle("Quiz Results");
-        setEduQuickContent(`
-                <p>You completed the quiz with a score of ${quizScore}%.</p>
-                <p>Review your answers and consider retaking the quiz to improve your score.</p>
-            `);
+    const storedQuiz = JSON.parse(sessionStorage.getItem("eduquickQuiz"));
+
+    if (quizId !== storedQuiz?.quizId) {
+        const path = location.pathname;
+        history.replaceState({}, "", "/");
+        await handlePageChange();
+        history.replaceState({}, "", path);
+        return;
     }
+
+    const assistedCount = storedQuiz.collectedCount - wrongCount;
+    const manualCount = storedQuiz.totalQuestions - storedQuiz.collectedCount;
+
+    setEduQuickStatus(`Quiz completed with ${quizScore}%.`);
+    setEduQuickTitle("Quiz Results");
+    setEduQuickContent(
+        await loadTemplate(quizResultTemplate, {
+            SCORE_PERCENT: quizScore,
+            ASSISTED_COUNT: assistedCount,
+            WRONG_COUNT: wrongCount,
+            MANUAL_COUNT: manualCount,
+        }),
+    );
 }

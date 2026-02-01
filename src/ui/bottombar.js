@@ -42,7 +42,7 @@ export function createBottomBar() {
     const right = document.createElement("div");
     right.className = "flex-1 flex items-center justify-end";
     right.innerHTML =
-        '&copy;&nbsp;2025&nbsp;<a href="https://github.com/Ahmedallion" class="underline" target="_blank">Ahmedallion</a>.&nbsp;Not affiliated with Educake Ltd.';
+        '&copy;&nbsp;2026&nbsp;<a href="https://github.com/Ahmedallion" class="underline" target="_blank">Ahmedallion</a>.&nbsp;Not affiliated with Educake Ltd.';
 
     bottombar.appendChild(left);
     bottombar.appendChild(middle);

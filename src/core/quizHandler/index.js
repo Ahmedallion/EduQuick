@@ -16,7 +16,7 @@ export default async function handleQuizPage() {
 
     if (quizPage) {
         submitBtn = [...document.querySelectorAll("button")].find(
-            (button) => button.textContent.trim() === "Submit"
+            (button) => button.textContent.trim() === "Submit",
         );
         submitBtn && (submitBtn.disabled = true);
         activeQuiz = true;
@@ -25,16 +25,16 @@ export default async function handleQuizPage() {
             [...document.querySelectorAll("button")].find(
                 (button) =>
                     button.textContent.trim() === "Begin quiz" ||
-                    button.textContent.trim() === "Continue quiz"
-            )
+                    button.textContent.trim() === "Continue quiz",
+            ),
         );
         startBtn.disabled = true;
     }
 
     const quizId = location.href.match(/quiz\/(\d+)/)?.[1];
-    const stored = JSON.parse(sessionStorage.getItem("EduQuickQuizData"));
+    const storedQuiz = JSON.parse(sessionStorage.getItem("eduquickQuiz"));
 
-    if (quizId !== stored?.quizId) {
+    if (quizId !== storedQuiz?.quizId) {
         if (quizPage) {
             history.replaceState({}, "", location.pathname + "/reload");
             window.dispatchEvent(new Event("popstate"));
@@ -45,8 +45,8 @@ export default async function handleQuizPage() {
     }
 
     if (!activeQuiz) {
-        return handlePreStartState({ startBtn, stored });
+        return handlePreStartState({ startBtn, storedQuiz });
     }
 
-    return handleActiveState({ stored, submitBtn });
+    return handleActiveState({ storedQuiz, submitBtn });
 }

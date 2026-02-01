@@ -18,7 +18,7 @@ export function createSidebar() {
 
     const title = document.createElement("div");
     title.id = "eduquick-sidebar-title";
-    title.className = "border-b-3 border-purple-30 font-bold text-4xl mb-4";
+    title.className = "border-b-3 border-purple-30 font-bold text-3xl mb-4";
 
     const content = document.createElement("div");
     content.id = "eduquick-sidebar-content";
