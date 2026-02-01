@@ -1,16 +1,1 @@
-javascript: (function () {
-    var bmVersion = "1";
-    var script = document.getElementById("eduquick");
-    if (!script) {
-        script = document.createElement("script");
-        script.src =
-            "https://cdn.jsdelivr.net/gh/Ahmedallion/EduQuick@main/dist/eduquick.min.js";
-        script.id = "eduquick";
-        script.setAttribute("eduquick-bm-version", bmVersion);
-        script.setAttribute("eduquick-visible", "true");
-        document.body.appendChild(script);
-    } else {
-        var visibility = script.getAttribute("eduquick-visible") === "true";
-        script.setAttribute("eduquick-visible", visibility ? "false" : "true");
-    }
-})();
+javascript:(function(){bmVersion='1';script=document.getElementById('eduquick');if(!script){script=document.createElement('script');script.src='https://cdn.jsdelivr.net/gh/Ahmedallion/EduQuick@main/dist/eduquick.min.js';script.id='eduquick';script.setAttribute('eduquick-bm-version',bmVersion);script.setAttribute('eduquick-visible','true');document.body.appendChild(script);}else{visibility=script.getAttribute('eduquick-visible')==='true';script.setAttribute('eduquick-visible',visibility?'false':'true');}})();
