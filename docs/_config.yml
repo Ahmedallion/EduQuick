@@ -1,0 +1,50 @@
+remote_theme: pmarsceill/just-the-docs
+
+title: EduQuick Docs
+description: Documentation for EduQuick - Collect answers and auto-complete Educake quizzes in seconds.
+baseurl: "/EduQuick"
+repository: Ahmedallion/EduQuick
+
+logo: "/assets/images/eduquick-icon.png"
+favicon_ico: "/assets/images/eduquick-icon.png"
+
+heading_anchors: true
+
+aux_links:
+    "EduQuick on GitHub":
+        - "https://github.com/Ahmedallion/EduQuick"
+
+aux_links_new_tab: false
+
+nav_enabled: true
+
+nav_external_links:
+    - title: EduQuick on GitHub
+      url: https://github.com/Ahmedallion/EduQuick
+
+back_to_top: true
+back_to_top_text: "Back to top"
+
+footer_content: 'Copyright &copy; 2025-2026 Ahmedallion. Distributed by an <a href="https://github.com/Ahmedallion/EduQuick/blob/main/LICENSE">MIT license.</a>'
+
+callouts:
+    highlight:
+        color: yellow
+    important:
+        title: Important
+        color: blue
+    new:
+        title: New
+        color: green
+    note:
+        title: Note
+        color: purple
+    warning:
+        title: Warning
+        color: red
+
+plugins:
+    - jekyll-seo-tag
+    - jekyll-github-metadata
+    - jekyll-include-cache
+    - jekyll-sitemap
