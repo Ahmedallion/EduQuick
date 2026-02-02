@@ -1,4 +1,8 @@
 remote_theme: pmarsceill/just-the-docs
+
 title: EduQuick Docs
-logo: ../images/eduquick-logo.png
-favicon: ../images/eduquick-logo.png
+logo: /images/eduquick-logo.png
+favicon: /images/eduquick-icon.png
+
+primary_color: "#593280"
+header_background: "#593280"
