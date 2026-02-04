@@ -6,10 +6,10 @@ Explain what this PR changes and why.
 
 ## Type of change
 
--   [ ] Bug fix
--   [ ] New feature
--   [ ] Refactor / cleanup
--   [ ] Documentation
+- [ ] Bug fix
+- [ ] New feature
+- [ ] Refactor / cleanup
+- [ ] Documentation
 
 ---
 

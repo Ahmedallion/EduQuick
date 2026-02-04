@@ -13,7 +13,6 @@ EduQuick automatically fetches the latest script version from GitHub, but someti
 ## 🔄 How to Update Your Bookmarklet
 
 1. **Remove the old bookmarklet**
-
     - Right-click the **EduQuick** folder in your bookmarks bar
     - Select **Move to Bin** (or Delete)
 

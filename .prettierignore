@@ -1,1 +1,2 @@
-install/**/*.js
+install/*
+dist/*
