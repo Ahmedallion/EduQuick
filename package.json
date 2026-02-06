@@ -1,15 +1,17 @@
 {
     "name": "eduquick",
     "description": "Collect answers and auto-complete Educake quizzes in seconds.",
-    "version": "1.0.0",
+    "version": "Beta",
     "bmVersion": "1",
     "main": "src/index.js",
     "scripts": {
         "dev": "concurrently \"vite build --watch\" \"serve dist -p 5173\"",
-        "build": "vite build"
+        "build": "vite build",
+        "format": "prettier . --write"
     },
     "devDependencies": {
         "concurrently": "^9.2.1",
+        "prettier": "3.8.1",
         "serve": "^14.2.5",
         "vite": "^5.0.0"
     }

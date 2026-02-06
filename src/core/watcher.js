@@ -1,4 +1,4 @@
-import { showEduQuick, hideEduQuick } from "../ui/display.js";
+import { showEduQuick, hideEduQuick } from "../ui/ui.js";
 import handlePageChange from "./pageHandler.js";
 import { cancelCurrentTasks } from "./pageCancellation.js";
 

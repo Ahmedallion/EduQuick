@@ -19,7 +19,7 @@ export function runAutoAnswer({
         if (mcqLabels) {
             const match = Array.from(mcqLabels).find(
                 (choice) =>
-                    choice.getAttribute("aria-label").trim() === correctAnswer
+                    choice.getAttribute("aria-label").trim() === correctAnswer,
             );
             match.click();
             return;
@@ -32,7 +32,7 @@ export function runAutoAnswer({
     }
 
     const nextBtn = [...document.querySelectorAll("button")].find(
-        (button) => button.textContent.trim() === "Next question"
+        (button) => button.textContent.trim() === "Next question",
     );
     nextBtn?.click();
 }

@@ -69,12 +69,11 @@ export default async function handleActiveState({ storedQuiz, submitBtn }) {
     const autoAnswerBtn = document.getElementById("auto-answer-btn");
 
     autoAnswerBtn.onclick = () => {
-        if (isAutoAnswerEnabled()) {
-            window.location.hash = "";
-        } else {
-            createModal({
-                title: "Enable Auto-Answer",
-                content: `
+        if (isAutoAnswerEnabled()) window.location.hash = "";
+
+        createModal({
+            title: "Enable Auto-Answer",
+            content: `
                     <p class="prose">
                         Are you sure you want to enable auto-answer?
                     </p>
@@ -82,22 +81,21 @@ export default async function handleActiveState({ storedQuiz, submitBtn }) {
                         Teachers can view the amount of time it takes you to complete a question. Use auto-answer responsibly - it depends on your teacher's monitoring.
                     </p>
                 `,
-                buttons: [
-                    {
-                        text: "Cancel",
-                        onClick: (close) => close(),
+            buttons: [
+                {
+                    text: "Cancel",
+                    onClick: (close) => close(),
+                },
+                {
+                    text: "Enable",
+                    class: "purple",
+                    onClick: (close) => {
+                        window.location.hash = "#auto-answer";
+                        close();
                     },
-                    {
-                        text: "Enable",
-                        class: "purple",
-                        onClick: (close) => {
-                            window.location.hash = "#auto-answer";
-                            close();
-                        },
-                    },
-                ],
-            });
-        }
+                },
+            ],
+        });
     };
 
     if (!isAutoAnswerEnabled()) {

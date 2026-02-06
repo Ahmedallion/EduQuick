@@ -30,7 +30,5 @@ export default async function handlePageChange() {
 
     setEduQuickStatus("No active quizzes.");
     setEduQuickTitle("How it works");
-    setEduQuickContent(
-        await loadTemplate(howItWorksTemplate, { VERSION: version })
-    );
+    setEduQuickContent(loadTemplate(howItWorksTemplate, { VERSION: version }));
 }

@@ -1,6 +1,5 @@
 import { waitForElement } from "../watcher.js";
 import { createNewController } from "../pageCancellation.js";
-
 import handleCollectState from "./collect.js";
 import handlePreStartState from "./preStart.js";
 import handleActiveState from "./active.js";
