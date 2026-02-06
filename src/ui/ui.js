@@ -1,5 +1,3 @@
-import { applyLayout, resetLayout } from "./layout";
-
 export function showEduQuick() {
     const sidebar = document.getElementById("eduquick-sidebar");
     const bottombar = document.getElementById("eduquick-bottombar");
@@ -7,7 +5,8 @@ export function showEduQuick() {
     sidebar.style.visibility = "visible";
     bottombar.style.visibility = "visible";
 
-    applyLayout();
+    document.body.style.marginRight = "25%";
+    document.body.style.marginBottom = "8%";
 }
 
 export function hideEduQuick() {
@@ -17,5 +16,6 @@ export function hideEduQuick() {
     sidebar.style.visibility = "hidden";
     bottombar.style.visibility = "hidden";
 
-    resetLayout();
+    document.body.style.marginRight = "";
+    document.body.style.marginBottom = "";
 }

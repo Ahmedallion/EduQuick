@@ -8,7 +8,7 @@ export default async function handleCollectState({ quizId, signal }) {
     setEduQuickStatus("Fetching quiz...");
     setEduQuickTitle("Collecting Answers");
     setEduQuickContent(
-        await loadTemplate(collectingTemplate, {
+        loadTemplate(collectingTemplate, {
             NUMBER: "?",
             QUESTION: "Loading question...",
             IMAGE_URL: "",

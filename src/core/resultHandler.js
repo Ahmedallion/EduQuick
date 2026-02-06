@@ -1,5 +1,5 @@
 import { setEduQuickStatus } from "../ui/bottombar";
-import { setEduQuickTitle, setEduQuickContent } from "../ui/sidebar";
+import { setEduQuickTitle, setEduQuickContent } from "../ui/sidebar.js";
 import loadTemplate from "../templates/load.js";
 import quizResultTemplate from "../templates/quiz-result.html?raw";
 import { createNewController } from "./pageCancellation.js";
