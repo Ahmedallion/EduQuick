@@ -1,0 +1,41 @@
+// ================================
+// EduQuick Custom Purple Theme
+// ================================
+
+// Main purple
+$primary-color: #593280; // for buttons, links, accents
+$primary-hover: lighten($primary-color, 10%);
+
+// ================================
+// Buttons
+// ================================
+.btn-purple {
+    background-color: $primary-color;
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.btn-purple:hover {
+    background-color: $primary-hover;
+    color: #fff;
+}
+
+// ================================
+// Sidebar
+// ================================
+.sidebar {
+    background-color: $primary-color;
+}
+
+.sidebar a {
+    color: #fff;
+}
+
+.sidebar a:hover {
+    color: $primary-hover;
+}

@@ -1,5 +1,5 @@
 <h1 style="display:flex;align-items:center;gap:10px;">
-  <img src="docs/images/eduquick-icon.png" alt="EduQuick Icon" style="height:42px;">
+  <img src="docs/assets/images/eduquick-icon.png" alt="EduQuick Icon" style="height:42px;">
   EduQuick
 </h1>
 
@@ -133,13 +133,13 @@ Huge thanks to these projects, which I discovered later on and which helped infl
 Images will be added soon:
 
 - UI elements
-  ![UI](docs/images/ui.png)
+  ![UI](docs/assets/images/ui.png)
 
 - Collecting overview
-  ![Collecting Overview](docs/images/collecting-overview.png)
+  ![Collecting Overview](docs/assets/images/collecting-overview.png)
 
 - Auto-answer flow
-  ![Auto Answer](docs/images/auto-answer.png)
+  ![Auto Answer](docs/assets/images/auto-answer.png)
 
 ---
 
