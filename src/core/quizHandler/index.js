@@ -1,25 +1,27 @@
-import { waitForElement } from "../watcher.js";
+import { getQuizRequest } from "../watchers/apiWatcher.js";
+import { waitForElement } from "../watchers/elementWatcher.js";
 import { createNewController } from "../pageCancellation.js";
 
 import handleCollectState from "./collect.js";
 import handlePreStartState from "./preStart.js";
 import handleActiveState from "./active.js";
+import { setEduQuickStatus } from "../../ui/bottombar";
+import { triggerQuizReload } from "../reload.js";
 
-export default async function handleQuizPage() {
-    const signal = createNewController();
+export async function handleQuizPage() {
+    const abortSignal = createNewController();
 
-    const quizPage = document.getElementById("quiz-top");
+    // If present, we're on the quiz page. If not, we're on the pre-start page.
+    const quizPageElement = document.getElementById("quiz-top");
 
     let submitBtn = null;
     let startBtn = null;
-    let activeQuiz = false;
 
-    if (quizPage) {
+    if (quizPageElement) {
         submitBtn = [...document.querySelectorAll("button")].find(
             (button) => button.textContent.trim() === "Submit",
         );
-        submitBtn && (submitBtn.disabled = true);
-        activeQuiz = true;
+        if (submitBtn) submitBtn.disabled = true;
     } else {
         startBtn = await waitForElement(() =>
             [...document.querySelectorAll("button")].find(
@@ -31,22 +33,61 @@ export default async function handleQuizPage() {
         startBtn.disabled = true;
     }
 
-    const quizId = location.href.match(/quiz\/(\d+)/)?.[1];
+    const quizId = Number(location.href.match(/quiz\/(\d+)/)?.[1]);
+
+    // Educake randomises quiz order per request
+    const quizRequest = await getQuizRequest(quizId);
+
     const storedQuiz = JSON.parse(sessionStorage.getItem("eduquickQuiz"));
 
-    if (quizId !== storedQuiz?.quizId) {
-        if (quizPage) {
-            history.replaceState({}, "", location.pathname + "/reload");
-            window.dispatchEvent(new Event("popstate"));
-            return;
+    if (!quizRequest || !storedQuiz) {
+        if (quizRequest && !storedQuiz && !quizPageElement) {
+            return handleCollectState({
+                quizId,
+                quizRequest,
+                signal: abortSignal,
+            });
+        }
+
+        return triggerQuizReload();
+    }
+
+    const originMatches = quizRequest.origin === storedQuiz.quizOrigin;
+    const orderMatches =
+        quizRequest.questions.join(",") === storedQuiz.questionOrder.join(",");
+
+    if (!originMatches) {
+        if (quizPageElement) {
+            return triggerQuizReload();
         } else {
-            return handleCollectState({ quizId, signal });
+            return handleCollectState({
+                quizId,
+                quizRequest,
+                signal: abortSignal,
+            });
         }
     }
 
-    if (!activeQuiz) {
-        return handlePreStartState({ startBtn, storedQuiz });
+    if (!orderMatches) {
+        setEduQuickStatus("Reordering questions...");
+
+        const unansweredCount =
+            quizRequest.questionCount - quizRequest.answerCount;
+
+        const updatedQuiz = {
+            ...storedQuiz,
+            quizId,
+            questionOrder: quizRequest.questions,
+            unansweredCount,
+        };
+
+        sessionStorage.setItem("eduquickQuiz", JSON.stringify(updatedQuiz));
     }
 
-    return handleActiveState({ storedQuiz, submitBtn });
+    // Quiz fully matches
+    if (quizPageElement) {
+        return handleActiveState({ storedQuiz, submitBtn });
+    } else {
+        return handlePreStartState(startBtn);
+    }
 }
