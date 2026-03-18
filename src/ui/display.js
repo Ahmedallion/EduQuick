@@ -1,21 +1,21 @@
 import { applyLayout, resetLayout } from "./layout";
 
 export function showEduQuick() {
-    const sidebar = document.getElementById("eduquick-sidebar");
-    const bottombar = document.getElementById("eduquick-bottombar");
+    const sidebarElement = document.getElementById("eduquick-sidebar");
+    const bottomBarElement = document.getElementById("eduquick-bottombar");
 
-    sidebar.style.visibility = "visible";
-    bottombar.style.visibility = "visible";
+    if (sidebarElement) sidebarElement.style.visibility = "visible";
+    if (bottomBarElement) bottomBarElement.style.visibility = "visible";
 
     applyLayout();
 }
 
 export function hideEduQuick() {
-    const sidebar = document.getElementById("eduquick-sidebar");
-    const bottombar = document.getElementById("eduquick-bottombar");
+    const sidebarElement = document.getElementById("eduquick-sidebar");
+    const bottomBarElement = document.getElementById("eduquick-bottombar");
 
-    sidebar.style.visibility = "hidden";
-    bottombar.style.visibility = "hidden";
+    if (sidebarElement) sidebarElement.style.visibility = "hidden";
+    if (bottomBarElement) bottomBarElement.style.visibility = "hidden";
 
     resetLayout();
 }

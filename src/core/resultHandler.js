@@ -8,7 +8,7 @@ import handlePageChange from "./pageHandler.js";
 export default async function handleQuizResult() {
     const signal = createNewController();
 
-    const quizId = location.href.match(/quiz-result\/(\d+)/)?.[1];
+    const quizId = Number(location.href.match(/quiz-result\/(\d+)/)?.[1]);
 
     const authToken = sessionStorage.getItem("token");
     const xsrfToken =
@@ -29,41 +29,37 @@ export default async function handleQuizResult() {
     );
 
     const quizData = await quizResponse.json();
+    const quizAttempt = quizData.attempt[quizId];
 
-    if (quizData.attempt[quizId].status !== "completed") {
+    if (quizAttempt.status !== "completed") {
         const newPath = location.pathname.replace("/quiz-result", "/quiz");
         history.replaceState({}, "", newPath);
         window.dispatchEvent(new Event("popstate"));
         return;
     }
 
-    const quizScore = Math.round(
-        (quizData.attempt[quizId].correctCount /
-            quizData.attempt[quizId].questionCount) *
-            100,
-    );
-
-    const wrongCount =
-        quizData.attempt[quizId].questionCount -
-        quizData.attempt[quizId].correctCount;
-
     const storedQuiz = JSON.parse(sessionStorage.getItem("eduquickQuiz"));
 
-    if (quizId !== storedQuiz?.quizId) {
-        const path = location.pathname;
+    // If the stored quiz doesn't match the current quiz, show 'How it works' instead of results
+    if (!storedQuiz || storedQuiz.quizId !== quizId) {
+        const currentPath = location.pathname;
         history.replaceState({}, "", "/");
         await handlePageChange();
-        history.replaceState({}, "", path);
+        history.replaceState({}, "", currentPath);
         return;
     }
 
-    const assistedCount = storedQuiz.collectedCount - wrongCount;
-    const manualCount = storedQuiz.totalQuestions - storedQuiz.collectedCount;
+    const quizScore = Math.round(
+        (quizAttempt.correctCount / quizAttempt.questionCount) * 100,
+    );
+    const wrongCount = quizAttempt.questionCount - quizAttempt.correctCount;
+    const assistedCount = storedQuiz.unansweredCount - wrongCount;
+    const manualCount = quizAttempt.questionCount - storedQuiz.unansweredCount;
 
     setEduQuickStatus(`Quiz completed with ${quizScore}%.`);
     setEduQuickTitle("Quiz Results");
     setEduQuickContent(
-        await loadTemplate(quizResultTemplate, {
+        loadTemplate(quizResultTemplate, {
             SCORE_PERCENT: quizScore,
             ASSISTED_COUNT: assistedCount,
             WRONG_COUNT: wrongCount,

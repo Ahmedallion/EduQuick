@@ -5,17 +5,15 @@ export default function createModal({
     closeOnBackdrop = true,
     closeOnEscape = true,
     showCloseButton = true,
-    hideInsteadOfRemove = false,
 } = {}) {
+    // Remove any existing modal to avoid overlapping
     const existingModal = document.getElementById("eduquick-modal");
-    if (existingModal) {
-        existingModal.remove();
-    }
+    if (existingModal) existingModal.remove();
 
-    const modal = document.createElement("div");
-    modal.id = "eduquick-modal";
+    const modalElement = document.createElement("div");
+    modalElement.id = "eduquick-modal";
 
-    modal.innerHTML = `
+    modalElement.innerHTML = `
         <div
             id="eduquick-backdrop"
             class="not-print:bg-black/50 not-print:z-100 flex justify-center items-center not-print:h-full not-print:w-full not-print:top-0 not-print:left-0 not-print:fixed"
@@ -26,32 +24,30 @@ export default function createModal({
                     class="modal-container flex flex-col min-w-250px max-w-screen max-h-[90vh] md:max-h-screen shadow-xl/20 hc:border rounded"
                     style="width: 400px; translate: 0px;"
                 >
+                    <!-- Header -->
                     <div
                         id="eduquick-modal-header"
                         class="modal-header w-full rounded-t block-3 border-3 border-page-bg purple"
                     >
                         <div class="text-bold p-2 w-full h-full flex justify-between">
                             <div class="pl-1 font-bold text-button-fg prose ellipsis my-auto">
-                                <p id="eduquick-modal-title-text" class="my-auto">
-                                    ${title}
-                                </p>
+                                <p id="eduquick-modal-title-text" class="my-auto">${title}</p>
                             </div>
 
                             ${
                                 showCloseButton
-                                    ? `
-                                    <button
+                                    ? `<button
                                         id="eduquick-close-btn"
                                         class="btn bg-block-bg-3 hc:border-0 cursor-pointer hoverable p-1"
                                     >
                                         <em class="icon-cross text-base"></em>
-                                    </button>
-                                `
+                                    </button>`
                                     : ""
                             }
                         </div>
                     </div>
 
+                    <!-- Body -->
                     <div
                         id="eduquick-modal-body"
                         class="modal-body flex-auto p-4 bg-page-bg not-print:overflow-auto h-full w-full"
@@ -59,31 +55,30 @@ export default function createModal({
                         ${content}
                     </div>
 
+                    <!-- Footer -->
                     <div
                         id="eduquick-modal-footer"
                         class="modal-footer w-full p-4 bg-page-bg rounded-b"
                     >
                         <div class="flex justify-end flex-wrap gap-2">
                             ${buttons
-                                .map((btn, i) => {
-                                    if (btn.href) {
+                                .map((button, index) => {
+                                    if (button.href) {
                                         return `<a
-                                            data-btn="${i}"
-                                            class="btn btn-small no-underline ${
-                                                btn.class || ""
-                                            }"
-                                            href="${btn.href}"
+                                            data-btn="${index}"
+                                            class="btn btn-small no-underline ${button.class || ""}"
+                                            href="${button.href}"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
-                                            ${btn.text}
+                                            ${button.text}
                                         </a>`;
                                     }
                                     return `<button
-                                        data-btn="${i}"
-                                        class="btn btn-small ${btn.class || ""}"
+                                        data-btn="${index}"
+                                        class="btn btn-small ${button.class || ""}"
                                     >
-                                        ${btn.text}
+                                        ${button.text}
                                     </button>`;
                                 })
                                 .join("")}
@@ -94,44 +89,38 @@ export default function createModal({
         </div>
     `;
 
-    document.body.appendChild(modal);
+    document.body.appendChild(modalElement);
 
-    const close = () => {
+    const closeModal = () => {
         document.removeEventListener("keydown", onKeyDown);
-
-        if (hideInsteadOfRemove) {
-            modal.hidden = true;
-            return;
-        }
-
-        modal.remove();
+        modalElement.remove();
     };
 
     if (showCloseButton) {
-        modal.querySelector("#eduquick-close-btn").onclick = close;
+        modalElement.querySelector("#eduquick-close-btn").onclick = closeModal;
     }
 
     if (closeOnBackdrop) {
-        modal.querySelector("#eduquick-backdrop").onclick = (e) => {
-            if (e.target.id === "eduquick-backdrop") close();
+        modalElement.querySelector("#eduquick-backdrop").onclick = (event) => {
+            if (event.target.id === "eduquick-backdrop") closeModal();
         };
     }
 
-    function onKeyDown(e) {
-        if (closeOnEscape && e.key === "Escape") close();
+    function onKeyDown(event) {
+        if (closeOnEscape && event.key === "Escape") closeModal();
     }
-
     if (closeOnEscape) {
         document.addEventListener("keydown", onKeyDown);
     }
 
-    buttons.forEach((btn, i) => {
-        if (!btn.href) {
-            modal.querySelector(`[data-btn="${i}"]`).onclick = () => {
-                btn.onClick?.(close);
-            };
+    buttons.forEach((button, index) => {
+        if (!button.href) {
+            modalElement.querySelector(`[data-btn="${index}"]`).onclick =
+                () => {
+                    button.onClick?.(closeModal);
+                };
         }
     });
 
-    return { close };
+    return { close: closeModal };
 }

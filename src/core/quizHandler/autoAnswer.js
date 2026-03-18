@@ -8,7 +8,7 @@ export function runAutoAnswer({
     textInput,
     mcqLabels,
     submitBtn,
-}) {
+} = {}) {
     if (userAnswer !== correctAnswer) {
         if (textInput) {
             textInput.value = correctAnswer;
@@ -17,11 +17,11 @@ export function runAutoAnswer({
         }
 
         if (mcqLabels) {
-            const match = Array.from(mcqLabels).find(
+            const matchingOption = Array.from(mcqLabels).find(
                 (choice) =>
-                    choice.getAttribute("aria-label").trim() === correctAnswer
+                    choice.getAttribute("aria-label").trim() === correctAnswer,
             );
-            match.click();
+            matchingOption.click();
             return;
         }
     }
@@ -31,8 +31,10 @@ export function runAutoAnswer({
         return;
     }
 
-    const nextBtn = [...document.querySelectorAll("button")].find(
-        (button) => button.textContent.trim() === "Next question"
+    const nextQuestionButton = [...document.querySelectorAll("button")].find(
+        (button) => button.textContent.trim() === "Next question",
     );
-    nextBtn?.click();
+    if (nextQuestionButton) {
+        nextQuestionButton.click();
+    }
 }

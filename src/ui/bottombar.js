@@ -3,12 +3,12 @@ import logoUrl from "../assets/eduquick-logo.png";
 export function createBottomBar() {
     if (document.getElementById("eduquick-bottombar")) return;
 
-    const bottombar = document.createElement("div");
-    bottombar.id = "eduquick-bottombar";
-    bottombar.className =
+    const bottomBar = document.createElement("div");
+    bottomBar.id = "eduquick-bottombar";
+    bottomBar.className =
         "bg-purple border-t-3 border-purple-30 text-white flex";
 
-    Object.assign(bottombar.style, {
+    Object.assign(bottomBar.style, {
         position: "fixed",
         bottom: "0",
         left: "0",
@@ -18,8 +18,8 @@ export function createBottomBar() {
         padding: "0 10px",
     });
 
-    const left = document.createElement("div");
-    left.className = "flex-1 flex items-center justify-start";
+    const leftSection = document.createElement("div");
+    leftSection.className = "flex-1 flex items-center justify-start";
 
     const logoLink = document.createElement("a");
     logoLink.href = "https://github.com/Ahmedallion/EduQuick";
@@ -27,32 +27,32 @@ export function createBottomBar() {
     logoLink.rel = "noopener noreferrer";
     logoLink.className = "flex items-center h-full";
 
-    const logoImg = document.createElement("img");
-    logoImg.src = logoUrl;
-    logoImg.alt = "EduQuick";
-    logoImg.style.height = "80%";
+    const logoImage = document.createElement("img");
+    logoImage.src = logoUrl;
+    logoImage.alt = "EduQuick";
+    logoImage.style.height = "80%";
 
-    logoLink.appendChild(logoImg);
-    left.appendChild(logoLink);
+    logoLink.appendChild(logoImage);
+    leftSection.appendChild(logoLink);
 
-    const middle = document.createElement("div");
-    middle.className = "flex-1 flex items-center justify-center";
-    middle.id = "eduquick-status";
+    const middleSection = document.createElement("div");
+    middleSection.className = "flex-1 flex items-center justify-center";
+    middleSection.id = "eduquick-status";
 
-    const right = document.createElement("div");
-    right.className = "flex-1 flex items-center justify-end";
-    right.innerHTML =
+    const rightSection = document.createElement("div");
+    rightSection.className = "flex-1 flex items-center justify-end";
+    rightSection.innerHTML =
         '&copy;&nbsp;2026&nbsp;<a href="https://github.com/Ahmedallion" class="underline" target="_blank">Ahmedallion</a>.&nbsp;Not affiliated with Educake Ltd.';
 
-    bottombar.appendChild(left);
-    bottombar.appendChild(middle);
-    bottombar.appendChild(right);
-    document.body.appendChild(bottombar);
+    bottomBar.appendChild(leftSection);
+    bottomBar.appendChild(middleSection);
+    bottomBar.appendChild(rightSection);
+    document.body.appendChild(bottomBar);
 }
 
-export function setEduQuickStatus(text) {
-    const statusEl = document.getElementById("eduquick-status");
-    if (statusEl) {
-        statusEl.textContent = text;
+export function setEduQuickStatus(text = "") {
+    const statusElement = document.getElementById("eduquick-status");
+    if (statusElement) {
+        statusElement.textContent = text;
     }
 }

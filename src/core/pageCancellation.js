@@ -2,7 +2,8 @@ export let currentAbortController = null;
 export const currentTimers = [];
 
 export function cancelCurrentTasks() {
-    if (currentAbortController) currentAbortController.abort();
+    if (currentAbortController)
+        currentAbortController.abort("navigation-change");
 
     currentTimers.forEach(clearInterval);
     currentTimers.length = 0;

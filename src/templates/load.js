@@ -1,7 +1,10 @@
 export default function loadTemplate(template, vars = {}) {
-    let out = template;
+    let rendered = template;
+
     for (const key in vars) {
-        out = out.replaceAll(`{{${key}}}`, vars[key]);
+        const value = vars[key];
+        rendered = rendered.replaceAll(`{{${key}}}`, value);
     }
-    return out;
+
+    return rendered;
 }
