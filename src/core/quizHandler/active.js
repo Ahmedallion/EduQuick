@@ -64,7 +64,7 @@ export default async function handleActiveState({
 
     if (userAnswer === "") {
         if (noneEl) noneEl.classList.remove("hidden");
-    } else if (userAnswer === questionData.answer) {
+    } else if (userAnswer.toLowerCase() === questionData.answer.toLowerCase()) {
         if (tickEl) tickEl.classList.remove("hidden");
 
         if (submitBtn) {
