@@ -16,9 +16,7 @@ Covers Chrome, Brave, Opera, Vivaldi.
 
 To get started, download the EduQuick HTML installer file to your computer.
 
-[Download EduQuick HTML](https://github.com/Ahmedallion/EduQuick/blob/main/install/eduquick.html){: .btn .btn-purple target="\_blank" rel="noopener"}
-
-![Chrome Step 1](../assets/images/installation/step-download.png)
+[Download EduQuick Installer](https://raw.githubusercontent.com/Ahmedallion/EduQuick/main/install/eduquick-import-latest.html){: .btn .btn-purple download}
 
 ### 2. Open bookmarks manager
 

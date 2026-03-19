@@ -16,9 +16,7 @@ Unlike Desktop browsers, iOS requires a manual bookmark setup to execute scripts
 
 Open the source file and copy the entire block of code to your clipboard.
 
-[Open EduQuick JS](https://github.com/Ahmedallion/EduQuick/blob/main/install/eduquick.js){: .btn .btn-purple target="\_blank" rel="noopener"}
-
-![iOS Step 2](../assets/images/installation/step-copy.png)
+[Open EduQuick JS](https://raw.githubusercontent.com/Ahmedallion/EduQuick/main/install/eduquick-bookmarklet-latest.js){: .btn .btn-purple target="\_blank" rel="noopener"}
 
 ### 2. Create a temporary bookmark
 

@@ -20,7 +20,7 @@ Android browsers do not natively support standard bookmarklets, making the proce
 
 First, bookmark the EduQuick JS page in your mobile browser for easy access to the source code.
 
-[Open EduQuick JS](https://github.com/Ahmedallion/EduQuick/blob/main/install/eduquick.js){: .btn .btn-purple target="\_blank" rel="noopener"}
+[Open EduQuick JS](https://raw.githubusercontent.com/Ahmedallion/EduQuick/main/install/eduquick-bookmarklet-latest.js){: .btn .btn-purple target="\_blank" rel="noopener"}
 
 ![Android Step 1](../assets/images/installation/android-step1.png)
 
@@ -30,8 +30,6 @@ Because Android does not support "one-tap" bookmarks for scripts, you must perfo
 
 **A. Copy the script**
 Open the JS file you bookmarked in [Step 1](#1-bookmark-the-repository), then copy the entire code block.
-
-![Android Step 2-1](../assets/images/installation/step-copy.png)
 
 **B. Execute in Educake**
 Log into your Educake account. Clear your browser's address bar completely, paste the code (ensure it starts with `javascript:`), and press **Go** on your keyboard.
