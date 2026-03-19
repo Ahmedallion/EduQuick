@@ -29,24 +29,46 @@ function initEduQuick() {
         return;
     }
 
-    if (script.getAttribute("eduquick-bm-version") !== bmVersion) {
+    const bookmarkletVersion = parseFloat(
+        script.getAttribute("eduquick-bm-version"),
+    );
+    const currentVersion = parseFloat(bmVersion);
+
+    if (bookmarkletVersion !== currentVersion) {
+        const isOutdated = bookmarkletVersion < currentVersion;
+
+        const buttons = [];
+
+        if (!isOutdated) {
+            buttons.push({
+                text: "Downgrading Guide",
+                href: "https://ahmedallion.github.io/EduQuick/troubleshooting/downgrading",
+            });
+        }
+
+        buttons.push({
+            text: "Update Guide",
+            class: "purple",
+            href: "https://ahmedallion.github.io/EduQuick/troubleshooting/updates",
+        });
+
         createModal({
-            title: "Update Required",
-            content: `
+            title: isOutdated ? "Update Required" : "Version Mismatch",
+            content: isOutdated
+                ? `
                 <p class="prose">The bookmarklet installed on your browser is outdated.</p>
-                <p class="prose">Please delete and uninstall EduQuick, then redownload the latest bookmarklet to continue.</p>
+                <p class="prose">Please delete and reinstall EduQuick to continue.</p>
+            `
+                : `
+                <p class="prose">Your bookmarklet is newer than the EduQuick version currently loaded.</p>
+                <p class="prose">Please update EduQuick properly, or view the downgrading guide if you intended to use an older version.</p>
             `,
-            buttons: [
-                {
-                    text: "Reinstall",
-                    class: "purple",
-                    href: "https://github.com/Ahmedallion/EduQuick/troubleshooting/update-required.md",
-                },
-            ],
+            buttons,
             closeOnBackdrop: false,
             closeOnEscape: false,
             showCloseButton: false,
         });
+
         script.remove();
         return;
     }
