@@ -155,7 +155,7 @@ Huge thanks to these projects, which I discovered later on and which helped infl
 
 <!-- Keywords for SEO -->
 
-education, answers, school, test, homework, bookmarklet, bookmark farming, quiz hacks, classwork, auto-answer, educake
+education, answers, school, ui, test, homework, bookmarklet, bookmark farming, quiz, hacks, classwork, latest, auto-answer, easy-to-setup, educake, eduquick
 
 <!--
 Made with ❤️ and a strong dislike for unnecessarily tedious homework.

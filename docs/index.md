@@ -44,34 +44,6 @@ Enable auto-answer to answer questions instantly.
 
 ---
 
-## ⚡ Quick Start
-
-### 1. Download Bookmarklet
-
-Download the installer file to your computer.
-
-[Download EduQuick HTML](https://github.com/Ahmedallion/EduQuick/blob/main/install/eduquick.html){: .btn .btn-purple target="\_blank" rel="noopener"}
-
-### 2. Open Bookmarks Manager
-
-Open your browser's manager by typing `chrome://bookmarks` or `edge://favorites` in the address bar.
-
-### 3. Import the Bookmark
-
-Click the **three dots** (options menu), select **Import bookmarks**, and choose the `eduquick.html` file you just downloaded.
-
-### 4. Run EduQuick
-
-Go to [Educake](https://www.educake.co.uk){:target="\_blank" rel="noopener"}, log in, and click **EduQuick** from your bookmarks bar.
-
-<br>
-
-{: .note }
-
-> **Tip:** If the quick start steps don't match your browser, visit the full [Installation](installation) guide for detailed device-specific instructions.
-
----
-
 ## 🔗 Project Links
 
 - [GitHub Repository](https://github.com/Ahmedallion/EduQuick){:target="\_blank" rel="noopener"}
