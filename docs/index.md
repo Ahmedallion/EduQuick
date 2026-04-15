@@ -3,6 +3,10 @@ title: Home
 nav_order: 1
 ---
 
+> ⚠️ **Project Archived / Support Ended**  
+> This project is no longer maintained. I’ve ended support after getting into trouble over its use, and it’s escalated beyond a small side project.  
+> No further updates or fixes will be released.
+
 # Collect answers and complete Educake quizzes faster
 
 EduQuick is a bookmarklet for **[Educake](https://www.educake.co.uk){:target="\_blank" rel="noopener"}** that helps you save time on repetitive quizzes by collecting answers before you start and optionally auto-completing them.

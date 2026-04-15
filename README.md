@@ -5,6 +5,10 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/gh/Ahmedallion/EduQuick/badge?style=rounded)](https://www.jsdelivr.com/package/gh/Ahmedallion/EduQuick) ![Stars](https://img.shields.io/github/stars/Ahmedallion/EduQuick?style=flat&logo=github) ![Last Commit](https://img.shields.io/github/last-commit/Ahmedallion/EduQuick) [![Docs](https://img.shields.io/badge/GitHub%20Pages-Docs-black?logo=github)](https://ahmedallion.github.io/EduQuick) [![Creatpr's Website](https://img.shields.io/badge/Website-ahmedallion.dev-blue?logo=google-chrome&logoColor=white)](https://ahmedallion.dev/)
 
+> ⚠️ **Project Archived / Support Ended**  
+> This project is no longer maintained. I’ve ended support after getting into trouble over its use, and it’s escalated beyond a small side project.  
+> No further updates or fixes will be released.
+
 **Collect answers and auto-complete Educake quizzes in seconds.**
 
 EduQuick is a simple tool for **[Educake](https://www.educake.co.uk)** that helps you get quizzes done faster.  
